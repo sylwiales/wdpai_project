@@ -1,1 +1,66 @@
-h1 {color:red}
+/* * {
+    font-size: 20px;
+} */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: bisque;
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    width: 45vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/* Styl dla pól input */
+input {
+  padding: 1rem;              /* margines wewnętrzny */
+  border-radius: 0.5rem;      /* zaokrąglone rogi */
+  border: 1px solid #ccc;     /* delikatna ramka */
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #ff9800;      /* pomarańczowa ramka po kliknięciu */
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.5);
+}
+
+/* Styl dla przycisku */
+button {
+  padding: 1rem;                                    /* margines wewnętrzny */
+  border-radius: 0.5rem;                            /* zaokrąglone rogi */
+  border: none;
+  background: linear-gradient(45deg, #ff9800, #ffb74d); /* pomarańczowy gradient */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);                           /* powiększenie po najechaniu */
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.5);    /* delikatny cień */
+}
+
+
+
+@media screen and (max-width: 480px) {
+    form {
+        width: 100vw;
+    }
+}

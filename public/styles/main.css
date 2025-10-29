@@ -1,1 +1,9 @@
-h1 {color:plum}
+h1 {
+    color: blue;
+}
+
+
+body {
+    height: 100vh;
+    margin: 0;
+}
