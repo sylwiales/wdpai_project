@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="public/styles/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="public/styles/main.css">
     <script src="public/scripts/main.js" defer></script>
     <title>DASHBOARD</title>
 </head>
@@ -21,9 +21,8 @@
         </aside>
         <main>
             <h1>CARDS</h1>
-            <!-- TODO display list of cards -->
              <ul>
-                    <?php foreach ($cards as $card): ?>
+                <?php foreach ($cards as $card): ?>
                 <li class="card">
                     <a href="<?= $card['href']; ?>">
                         <img src="<?= $card['imageUrlPath']; ?>" alt="<?= $card['title']; ?>">
@@ -31,7 +30,7 @@
                         <p><?= $card['subtitle']; ?></p>
                     </a>
                 </li>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
              </ul>
         </main>
     </div>

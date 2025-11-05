@@ -8,12 +8,20 @@
     <title>LOGIN</title>
 </head>
 <body>
-    <form>
-        <h1>LOGIN</h1>
+    <form action="\login" method="POST">
+        <h1 id="title">LOGIN</h1>
 
-        <input type="email" placeholder="Twój email">
-        <input type="password" placeholder="Twoje hasło">
+        <?php if(isset($message)): ?>
+            <p class="message">
+                <?= $message; ?>
+            </p>
+        <?php endif; ?>
+        
+        <input name="email" type="email" placeholder="Podaj email">
+        <input name="password" type="password" placeholder="Podaj hasło">
         <button type="submit">LOGIN</button>
+
+        <a href="\register">Zarejestruj się</a>
     </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ class Routing {
             'action' => 'login'
         ],
         'register' => [
-            'controller' => "SecurityController",
+            'controller' => 'SecurityController',
             'action' => 'register'
         ],
         'dashboard' => [
@@ -36,6 +36,13 @@ class Routing {
 
                 $action = Routing::$routes[$path]["action"];
                 $controller->$action(); 
+                break;
+            case 'register':
+                $controller = Routing::$routes[$path]['controller'];
+                $action = Routing::$routes[$path]['action'];
+
+                $controllerObj = new $controller;
+                $controllerObj->$action();
                 break;
     default:
         include 'public/views/404.html';
