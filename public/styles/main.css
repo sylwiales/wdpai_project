@@ -1,9 +1,60 @@
 h1 {
     color: blue;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 
 body {
     height: 100vh;
     margin: 0;
+}
+
+nav{
+    background-color: darkorchid;
+    display:flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+aside{
+    background-color: gainsboro;
+}
+
+main{
+    background-color: darkkhaki;
+}
+
+.container{
+    background-color: coral;
+    display:grid;
+    grid-template-columns: 20% 80%;
+    height: calc(100vh - 5rem)
+}
+
+body{
+    margin: 0px;
+    height: 100vh;
+}
+
+nav > ul{
+    display:flex;
+    gap:2rem;
+}
+
+@media screen and (max-width: 480px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+    aside {
+        position: fixed;
+        bottom:0;
+        left: 0;
+        right: 0;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
