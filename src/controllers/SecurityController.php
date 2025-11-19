@@ -24,11 +24,6 @@ class SecurityController extends AppController
         ],
     ];
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function login()
     {
         if (!$this->isPost()) {
