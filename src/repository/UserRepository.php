@@ -43,6 +43,44 @@ class UserRepository extends Repository
         );
     }
 
+    public function getUserByEmail(string $email): ?array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM users WHERE email = :email
+        ');
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user == false) {
+            return null;
+        }
+        // todo disconnect
+        return $user;
+    }
+
+    public function createUser(
+        string $email,
+        string $hashedPassword,
+        string $firstname,
+        string $lastname,
+        string $bio = ''
+    ){
+        $stmt = $this->database->connect()->prepare(
+            '
+            INSERT INTO public.users (email, password, firstname, lastname, bio) VALUES (?,?,?,?,?)
+            '
+        );
+        $stmt->execute([
+            $email,
+            $hashedPassword,
+            $firstname,
+            $lastname,
+            $bio
+        ]);
+    }
+
 
     // public function addUser(User $user)
     // {
