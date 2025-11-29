@@ -60,64 +60,39 @@ class UserRepository extends Repository
         return $user;
     }
 
+     public function getUserByUsername(string $username): ?array
+    {
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM users WHERE username = :username
+        ');
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user == false) {
+            return null;
+        }
+        // todo disconnect
+        return $user;
+    }
+
+
     public function createUser(
         string $email,
         string $hashedPassword,
-        string $firstname,
-        string $lastname,
-        string $bio = ''
+        string $username
     ){
         $stmt = $this->database->connect()->prepare(
             '
-            INSERT INTO public.users (email, password, firstname, lastname, bio) VALUES (?,?,?,?,?)
+            INSERT INTO public.users (email, password, username) VALUES (?,?,?)
             '
         );
         $stmt->execute([
             $email,
             $hashedPassword,
-            $firstname,
-            $lastname,
-            $bio
+            $username
         ]);
     }
 
-
-    // public function addUser(User $user)
-    // {
-    //     $stmt = $this->database->connect()->prepare('
-    //         INSERT INTO users_details (name, surname, phone)
-    //         VALUES (?, ?, ?)
-    //     ');
-
-    //     $stmt->execute([
-    //         $user->getName(),
-    //         $user->getSurname(),
-    //         $user->getPhone()
-    //     ]);
-
-    //     $stmt = $this->database->connect()->prepare('
-    //         INSERT INTO users (email, password, id_user_details)
-    //         VALUES (?, ?, ?)
-    //     ');
-
-    //     $stmt->execute([
-    //         $user->getEmail(),
-    //         $user->getPassword(),
-    //         $this->getUserDetailsId($user)
-    //     ]);
-    // }
-
-    // public function getUserDetailsId(User $user): int
-    // {
-    //     $stmt = $this->database->connect()->prepare('
-    //         SELECT * FROM public.users_details WHERE name = :name AND surname = :surname AND phone = :phone
-    //     ');
-    //     $stmt->bindParam(':name', $user->getName(), PDO::PARAM_STR);
-    //     $stmt->bindParam(':surname', $user->getSurname(), PDO::PARAM_STR);
-    //     $stmt->bindParam(':phone', $user->getPhone(), PDO::PARAM_STR);
-    //     $stmt->execute();
-
-    //     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     return $data['id'];
-    // }
 }

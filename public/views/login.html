@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="public/styles/main.css">
     <link rel="stylesheet" type="text/css" href="public/styles/login.css">
+    <link rel="stylesheet" type="text/css" href="public/styles/navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>LOGIN</title>
+    
 </head>
 <body>
+    <nav class="login">
+        <h1>Unihub</h1>
+    </nav>
     <form action="\login" method="POST">
-        <h1 id="title">LOGIN</h1>
-
-        <?php if(isset($message)): ?>
+        <?php if(isset($messages)): ?>
             <p class="message">
-                <?= $message; ?>
+                <?= $messages; ?>
             </p>
         <?php endif; ?>
         
-        <input name="email" type="email" placeholder="Podaj email">
+        <label for="email">Email</label>
+        <input name="email" type="email" placeholder="Podaj e-mail">
+        <label for="password">Hasło</label>
         <input name="password" type="password" placeholder="Podaj hasło">
-        <button type="submit">LOGIN</button>
+        <a href="\register">Nie pamiętam hasła</a>
+        
+        <button type="submit">Zaloguj się</button>
 
-        <a href="\register">Zarejestruj się</a>
+        <a href="\register">Nie masz konta? Zarejestruj się!</a>
     </form>
 </body>
 </html>

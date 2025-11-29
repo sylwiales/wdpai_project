@@ -46,18 +46,23 @@ class SecurityController extends AppController
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password1'] ?? '';
         $password2 = $_POST['password2'] ?? '';
-        $firstname = $_POST['firstname'] ?? '';
-        $lastname = $_POST['lastname'] ?? '';
+        $username = $_POST['username'] ?? '';
 
-        if(empty($email) || empty($password) || empty($firstname) || empty($lastname)){
+        if(empty($email) || empty($password) || empty($password2)  || empty($username)){
             return $this->render('register', ['messages' => 'Fill all fields']);
         }
         if($password !== $password2){
             return $this->render('register', ['messages' => 'Passwords do not match']);
         }
+        if($this->userRepository->getUserByEmail($email)){
+            return $this->render('register', ['messages' => 'User with this email already exists']);
+        }
+        if($this->userRepository->getUserByUsername($username)){
+            return $this->render('register', ['messages' => 'Username already taken']);
+        }
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $this->userRepository->createUser($email, $hashedPassword, $firstname, $lastname);
+        $this->userRepository->createUser($email, $hashedPassword, $username);
 
         return $this->render('login', ['messages' => 'Account created successfully. Please log in.']);
     }

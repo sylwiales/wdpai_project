@@ -1,0 +1,23 @@
+nav {
+    background-color: #4F517D;
+    padding: 20px 40px;
+    box-shadow: 0px 4px 5px 0px rgba(18, 1, 1, 0.20);
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 1;
+}
+
+nav h1 {
+    font-family: 'Inconsolata', sans-serif;
+    color:white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+nav.login{
+    max-width: 400px;
+    width: 90%;
+    margin: 0px auto;
+    display:flex;
+    justify-content: center;
+}

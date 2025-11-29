@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="public/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="public/styles/navbar.css">
     <link rel="stylesheet" type="text/css" href="public/styles/login.css">
 </head>
 <body>
+    <nav class="login">
+        <h1>Unihub</h1>
+    </nav>
     <form action="\register" method="POST">
-        <h1 id="title">REGISTER AS A NEW USER</h1>
+        <?php if(isset($messages)): ?>
+            <p class="message">
+                <?= $messages; ?>
+            </p>
+        <?php endif; ?>
 
+        <label for="email">Email</label>
         <input name="email" type="email" placeholder="Podaj email">
+        <label for="password1">Hasło</label>
         <input name="password1" type="password" placeholder="Podaj hasło">
+        <label for="password2">Powtórz hasło</label>
         <input name="password2" type="password" placeholder="Powtórz hasło">
+        <label for="username">Nazwa użytkownika</label>
+        <input name="username" type="text" placeholder="Podaj nazwę użytkownika">
 
-        <input name="firstname" type="text" placeholder="Podaj imie">
-        <input name="lastname" type="text" placeholder="Podaj naziwsko">
-
-        <button type="submit">REGISTER</button>
+        <button type="submit">Stwórz moje konto</button>
+        <a href="\login">Masz już konto? Zaloguj się!</a>
     </form>
 
 </body>
