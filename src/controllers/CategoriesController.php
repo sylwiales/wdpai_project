@@ -3,16 +3,16 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
-class DashboardController extends AppController {
+class CategoriesController extends AppController {
 
-    public function dashboard() {
+    public function categories() {
 
         // tutaj logika logowania(sprawdzanie uzytkownika, zabezpieczenie inputu itd.)
 
     $userRepository = new UserRepository();
     //$users = $userRepository->getUsers();
 
-    return $this->render("dashboard");
+    return $this->render("categories");
     }
 
 }

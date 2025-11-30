@@ -2,6 +2,7 @@
 
 require_once 'src/controllers/SecurityController.php';
 require_once 'src/controllers/DashboardController.php';
+require_once 'src/controllers/CategoriesController.php';
 
 class Routing {
 
@@ -17,6 +18,10 @@ class Routing {
         'dashboard' => [
             'controller' => "DashboardController",
             'action' => 'dashboard'
+        ],
+        'categories' => [
+            'controller' => "CategoriesController",
+            'action' => 'categories'
         ]
         ];
 
@@ -38,6 +43,13 @@ class Routing {
                 $controller->$action(); 
                 break;
             case 'register':
+                $controller = Routing::$routes[$path]['controller'];
+                $action = Routing::$routes[$path]['action'];
+
+                $controllerObj = new $controller;
+                $controllerObj->$action();
+                break;
+            case 'categories':
                 $controller = Routing::$routes[$path]['controller'];
                 $action = Routing::$routes[$path]['action'];
 
