@@ -20,9 +20,7 @@ class AppController {
         $output = "";
                  
         if(file_exists($templatePath)){
-            // ['items' => $cards]
             extract($variables);
-            // $items = [ [id=> 1], [id=>2]]
             ob_start();
             include $templatePath;
             $output = ob_get_clean();

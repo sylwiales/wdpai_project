@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="public/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="public/styles/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="public/styles/navbar.css">
     <script src="public/scripts/main.js" defer></script>
-    <title>DASHBOARD</title>
+    <title>Dashboard</title>
 </head>
 <body>
     <nav>
+        <a href="\dashboard">Unihub</a>
         <ul>
-            <li>DASHBOARD</li>
-            <li>USERS</li>
-            <li>REPORTS</li>
+            <li><a href="\dashboard">Strona główna</a></li>
+            <li><a href="\categories">Kategorie</a></li>
+            <li><a href="\konto">Profil</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -20,18 +22,7 @@
             <p>PODRECZNE MENU</p>
         </aside>
         <main>
-            <h1>CARDS</h1>
-             <ul>
-                <?php foreach ($cards as $card): ?>
-                <li class="card">
-                    <a href="<?= $card['href']; ?>">
-                        <img src="<?= $card['imageUrlPath']; ?>" alt="<?= $card['title']; ?>">
-                        <h2><?= $card['title']; ?></h2>
-                        <p><?= $card['subtitle']; ?></p>
-                    </a>
-                </li>
-                <?php endforeach; ?>
-             </ul>
+            <h1>Sumy</h1>
         </main>
     </div>
 </body>

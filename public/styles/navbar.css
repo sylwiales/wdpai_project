@@ -1,23 +1,50 @@
 nav {
     background-color: #4F517D;
-    padding: 20px 40px;
+    font-family: 'Inconsolata', sans-serif;
+    padding: 10px 20px;
     box-shadow: 0px 4px 5px 0px rgba(18, 1, 1, 0.20);
-    border-bottom: 1px solid #e0e0e0;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav h1 {
-    font-family: 'Inconsolata', sans-serif;
+nav > a {
     color:white;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 900;
     margin: 0;
+    font-weight: 500;
+    text-decoration: none;
 }
 
-nav.login{
+nav > a:hover {
+    color:white;
+    text-decoration: none;
+}
+
+nav.small{
     max-width: 400px;
     width: 90%;
     margin: 0px auto;
-    display:flex;
     justify-content: center;
+}
+
+nav > ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+li > a{
+    color:white;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+li > a:hover{
+    color:white;
+    text-decoration: none;
 }

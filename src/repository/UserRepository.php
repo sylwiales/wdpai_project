@@ -38,8 +38,7 @@ class UserRepository extends Repository
         return new User(
             $user['email'],
             $user['password'],
-            $user['name'],
-            $user['surname']
+            $user['username']
         );
     }
 
@@ -85,7 +84,7 @@ class UserRepository extends Repository
     ){
         $stmt = $this->database->connect()->prepare(
             '
-            INSERT INTO public.users (email, password, username) VALUES (?,?,?)
+            INSERT INTO public.users (email, hashedpassword, username) VALUES (?,?,?)
             '
         );
         $stmt->execute([

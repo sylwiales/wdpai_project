@@ -30,7 +30,7 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => 'User not found']);
         }
 
-        if (!password_verify($password, $userRow['password'])) {
+        if (!password_verify($password, $userRow['hashedpassword'])) {
             return $this->render('login', ['messages' => 'Wrong password']);
         }
         // TODO ciastrzeczka
