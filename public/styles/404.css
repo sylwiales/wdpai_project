@@ -1,29 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #E6E6EF;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-}
-
-a {
-    color: #184182;
-    text-decoration: none;
-    font-size: 14px;
-    text-align: center;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #184182;
-    text-decoration: underline;
 }
 
 div{

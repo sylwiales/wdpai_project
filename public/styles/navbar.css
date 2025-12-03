@@ -9,6 +9,7 @@ nav {
     align-items: center;
     width:90%;
     margin-top: 2vh;
+    height: 7vh;
 }
 
 nav > a {
@@ -45,4 +46,12 @@ li > a{
 li > a:hover{
     color:white;
     text-decoration: none;
+}
+
+@media (max-width: 480px) {
+    nav{
+        max-width: 480px;
+        width: 100%;
+        margin: 0;
+    }
 }
