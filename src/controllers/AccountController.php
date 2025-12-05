@@ -3,9 +3,9 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../repository/UserRepository.php';
 
-class CategoriesController extends AppController {
+class AccountController extends AppController {
 
-    public function categories() {
+    public function account() {
         if(isset($_COOKIE['username']))
             $username = $_COOKIE['username'];
         else{
@@ -18,7 +18,7 @@ class CategoriesController extends AppController {
     $userRepository = UserRepository::getInstance();
     //$users = $userRepository->getUsers();
 
-    return $this->render("categories");
+    return $this->render("account");
     }
 
 }

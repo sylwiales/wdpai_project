@@ -8,7 +8,10 @@ class SecurityController extends AppController
     private $userRepository;
     public function __construct()
     {
-        $this->userRepository = new UserRepository();
+        $this->userRepository = UserRepository::getInstance();
+        if(isset($_COOKIE['username']))
+            $url = "http://$_SERVER[HTTP_HOST]";
+            header("Location: {$url}/dashboard");
     }
 
     public function login()
@@ -27,13 +30,17 @@ class SecurityController extends AppController
         $userRow = $this->userRepository->getUserByEmail($email);
 
         if (!$userRow) {
-            return $this->render('login', ['messages' => 'User not found']);
+            return $this->render('login', ['messages' => 'Wrong password o email']);
         }
 
         if (!password_verify($password, $userRow['hashedpassword'])) {
-            return $this->render('login', ['messages' => 'Wrong password']);
+            return $this->render('login', ['messages' => 'Wrong password o email']);
         }
-        // TODO ciastrzeczka
+        
+        $cookie_name = "username";
+        $cookie_value = $userRow['username'];
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/dashboard");
     }

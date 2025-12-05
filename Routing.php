@@ -22,43 +22,34 @@ class Routing {
         'categories' => [
             'controller' => "CategoriesController",
             'action' => 'categories'
+        ],
+        'account' => [
+            'controller' => "AccountController",
+            'action' => 'account'
+        ],
+        'search-cards' => [
+            'controller' => "DashboardController",
+            'action' => 'search'
         ]
         ];
 
     public static function run(string $path) {
         switch ($path) {
-            case 'dashboard':
-                $controller_name = Routing::$routes[$path]["controller"];
-                $controller = new $controller_name;
-                
-                $action = Routing::$routes[$path]["action"];
-                $controller->$action();
-                break;
-                
+            case 'dashboard':      
             case 'login':
-                $controller_name = Routing::$routes[$path]["controller"]; 
-                $controller = new $controller_name; 
-
-                $action = Routing::$routes[$path]["action"];
-                $controller->$action(); 
-                break;
             case 'register':
-                $controller = Routing::$routes[$path]['controller'];
-                $action = Routing::$routes[$path]['action'];
-
-                $controllerObj = new $controller;
-                $controllerObj->$action();
-                break;
+            case 'search-cards':
             case 'categories':
+            case 'account':
                 $controller = Routing::$routes[$path]['controller'];
                 $action = Routing::$routes[$path]['action'];
 
                 $controllerObj = new $controller;
                 $controllerObj->$action();
                 break;
-    default:
-        include 'public/views/404.html';
-        break;
+        default:
+            include 'public/views/404.html';
+            break;
 } 
     }
 }

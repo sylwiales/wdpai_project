@@ -8,6 +8,17 @@ require_once 'Repository.php';
 
 class UserRepository extends Repository
 {
+    private static $instance = [];
+
+    public static function getInstance(): UserRepository
+    {
+        $cls = static::class;
+        if (!isset(self::$instance[$cls])) {
+            self::$instance[$cls] = new static();
+        }
+
+        return self::$instance[$cls];
+    }
 
     public function getUsers(): ?array
     {
@@ -42,7 +53,7 @@ class UserRepository extends Repository
         );
     }
 
-    public function getUserByEmail(string $email): ?array
+    public function getUserByEmail(string $email)
     {
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM users WHERE email = :email
