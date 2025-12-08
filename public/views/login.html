@@ -28,9 +28,10 @@
         <input name="email" type="email" placeholder="Podaj e-mail">
         <label for="password">Hasło</label>
         <input name="password" type="password" placeholder="Podaj hasło">
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>"> 
         <a href="\register">Nie pamiętam hasła</a>
         
-        <button type="submit">Zaloguj się</button>
+        <button class="submit-btn" type="submit">Zaloguj się</button>
 
         <a href="\register">Nie masz konta? Zarejestruj się!</a>
     </form>

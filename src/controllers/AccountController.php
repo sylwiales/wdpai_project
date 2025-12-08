@@ -13,11 +13,8 @@ class AccountController extends AppController {
             header("Location: {$url}/login");
             return;
         }
-        // tutaj logika logowania(sprawdzanie uzytkownika, zabezpieczenie inputu itd.)
 
     $userRepository = UserRepository::getInstance();
-    //$users = $userRepository->getUsers();
-
     return $this->render("account");
     }
 

@@ -9,9 +9,10 @@ class SecurityController extends AppController
     public function __construct()
     {
         $this->userRepository = UserRepository::getInstance();
-        if(isset($_COOKIE['username']))
+        if(isset($_COOKIE['username'])){
             $url = "http://$_SERVER[HTTP_HOST]";
             header("Location: {$url}/dashboard");
+        }
     }
 
     public function login()
@@ -20,6 +21,8 @@ class SecurityController extends AppController
             return $this->render('login');
         }
 
+        // if ($_POST['csrf'] !== $_SESSION['csrf']) die("CSRF detected"); 
+
         $email = trim($_POST["email"] ?? '');
         $password = $_POST["password"] ?? '';
 
@@ -27,14 +30,18 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => 'Fill all fields']);
         }
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { 
+            return $this->render('login', ['messages' => 'Invalid email format']); 
+        } 
+
         $userRow = $this->userRepository->getUserByEmail($email);
 
         if (!$userRow) {
-            return $this->render('login', ['messages' => 'Wrong password o email']);
+            return $this->render('login', ['messages' => 'Wrong password or email']);
         }
 
         if (!password_verify($password, $userRow['hashedpassword'])) {
-            return $this->render('login', ['messages' => 'Wrong password o email']);
+            return $this->render('login', ['messages' => 'Wrong password or email']);
         }
         
         $cookie_name = "username";
@@ -58,6 +65,11 @@ class SecurityController extends AppController
         if(empty($email) || empty($password) || empty($password2)  || empty($username)){
             return $this->render('register', ['messages' => 'Fill all fields']);
         }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { 
+            return $this->render('login', ['messages' => 'Invalid email format']); 
+        } 
+
         if($password !== $password2){
             return $this->render('register', ['messages' => 'Passwords do not match']);
         }
@@ -72,5 +84,17 @@ class SecurityController extends AppController
         $this->userRepository->createUser($email, $hashedPassword, $username);
 
         return $this->render('login', ['messages' => 'Account created successfully. Please log in.']);
+    }
+
+    public function logout(){
+        if(!$this->isPost()){
+            return $this->render('account');
+        }
+        setcookie("username", "", time() - 3600, "/");
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/login");
+        
+        session_unset(); 
+        session_destroy();
     }
 }
