@@ -43,7 +43,24 @@ class SecurityController extends AppController
         if (!password_verify($password, $userRow['hashedpassword'])) {
             return $this->render('login', ['messages' => 'Wrong password or email']);
         }
-        
+
+        ini_set('session.use_strict_mode', 1);
+        ini_set('session.use_only_cookies', 1);
+
+        session_set_cookie_params([
+            'lifetime' => 10,
+            'path' => '/',
+            'domain' => 'localhost',
+            'secure' => 'true',
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_regenerate_id(true);
+
         $cookie_name = "username";
         $cookie_value = $userRow['username'];
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
